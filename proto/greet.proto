@@ -1,0 +1,47 @@
+syntax = "proto3";
+option go_package = "./proto";
+
+package greet_service;
+
+//This is a code snippet defining a gRPC service called GreetService with four methods: SayHello, SayHelloServerStreaming, 
+//SayHelloClientStreaming, and SayHelloBidirectional. Each method has a specific input and output type.
+
+// Defining a Protobuf service named GreetService
+service GreetService {
+    // Defining an RPC method named SayHello that takes no request parameters and returns a HelloResponse
+    rpc SayHello (NoParam) returns (HelloResponse);
+
+    // Defining an RPC method named SayHelloServerStreaming that takes a NameList parameter and returns a stream of HelloResponse
+    rpc SayHelloServerStreaming (NameList) returns (stream HelloResponse);
+
+    // Defining an RPC method named SayHelloClientStreaming that takes a stream of HelloRequest parameters and returns a MessageList
+    rpc SayHelloClientStreaming (stream HelloRequest) returns (MessageList);
+
+    // Defining an RPC method named SayHelloBidirectional that takes a stream of HelloRequest parameters and returns a stream of HelloResponse
+    rpc SayHelloBidirectional (stream HelloRequest) returns (stream HelloResponse);
+}
+
+
+// Define a message named "NoParam" that has no fields
+message NoParam{};
+
+// Define a message named "HelloRequest" that has one field named "name" of type string, with a field number of 1
+message HelloRequest{
+    string name = 1;
+}  
+
+// Define a message named "NameList" that has one repeated field named "name" of type string, with a field number of 1
+message NameList{
+    repeated string name=1;
+}
+
+// Define a message named "HelloResponse" that has one field named "message" of type string, with a field number of 1
+message HelloResponse{
+    string message = 1;
+}
+
+// Define a message named "MessageList" that has one repeated field named "message" of type string, with a field number of 1
+message MessageList{
+    repeated string message=1;
+}
+
