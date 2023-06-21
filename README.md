@@ -23,10 +23,9 @@ generate_grpc:
 	protoc \
 	--go_out=. \
 	--go-grpc_out=. \
-	proto/greet.proto```
-
-
-
+	proto/greet.proto
+```
+ 
 ## Description of tutorial
 
 This is a very basic tutorial for how to define and implement the 4-type of rpc in Golang using "Protobuf" and "proto compile". Some steps:
